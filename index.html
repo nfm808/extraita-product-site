@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .section {
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      .section div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      div img {
+        width: 300px;
+        height: auto;
+      }
+      a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid black;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <a href="/roberta-gandolfi/">images</a> -->
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        // Code that int
+        // eracts with the document
+        const main = async () => {
+          const Constants = await fetch("constant.json").then(response =>
+            response.json()
+          );
+          const { directories } = Constants;
+          console.log(directories);
+          // const document = document.querySelector("body");
+          let el;
+          let h2;
+          let section;
+          let div;
+          let img;
+          for (x in directories) {
+            section = document.createElement("section");
+            section.classList.add("section");
+            h2 = document.createElement("h2");
+            h2.innerText = directories[x].directory;
+
+            for (y in directories[x].content) {
+              div = document.createElement("div");
+              img = document.createElement("img");
+              img.src = encodeURI(
+                "/" + directories[x].directory + directories[x].content[y]
+              );
+              el = document.createElement("a");
+              el.href = encodeURI(
+                "/" + directories[x].directory + directories[x].content[y]
+              );
+              el.innerText = directories[x].content[y];
+              console.log(el);
+              el.append(img);
+              div.append(el);
+              section.append(div);
+            }
+            document.body.append(h2);
+            document.body.append(section);
+          }
+        };
+        main();
+      });
+    </script>
+  </body>
+</html>
