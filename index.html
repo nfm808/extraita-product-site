@@ -60,11 +60,11 @@
               div = document.createElement("div");
               img = document.createElement("img");
               img.src = encodeURI(
-                "/" + directories[x].directory + directories[x].content[y]
+                "./" + directories[x].directory + directories[x].content[y]
               );
               el = document.createElement("a");
               el.href = encodeURI(
-                "/" + directories[x].directory + directories[x].content[y]
+                "./" + directories[x].directory + directories[x].content[y]
               );
               el.innerText = directories[x].content[y];
               console.log(el);
